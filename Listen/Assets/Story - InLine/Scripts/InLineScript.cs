@@ -12,6 +12,8 @@ public class InLineScript : MonoBehaviour {
 
 	[SerializeField]
 	private Canvas canvas; // canvas for text/images
+	private GameObject buttonPlace; // placement for button
+	private GameObject dialogePlace;
 
 	// UI Prefabs
 	[SerializeField]
@@ -20,12 +22,15 @@ public class InLineScript : MonoBehaviour {
 	private Button buttonPrefab;
 
 	void Awake(){
+		buttonPlace = canvas.transform.GetChild(0).gameObject;
+		dialogePlace = canvas.transform.GetChild(1).gameObject;
 		StartStory();
 	}
 
 	// Use this for initialization
 	void StartStory () {
 		story = new Story(inkStory.text);
+		
 		RefreshView();
 	}
 	
@@ -61,12 +66,14 @@ public class InLineScript : MonoBehaviour {
 	void CreateContentView (string text) {
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
-		storyText.transform.SetParent (canvas.transform, false);
+		storyText.transform.SetParent (dialogePlace.transform, false);
 	}
 
 	Button CreateChoiceView (string text) {
 		Button choice = Instantiate (buttonPrefab) as Button;
-		choice.transform.SetParent (canvas.transform, false);
+		
+		choice.transform.SetParent (buttonPlace.transform, false);
+		//choice.transform.parent = buttonPlace.transform;
 
 		Text choiceText = choice.GetComponentInChildren<Text> ();
 		choiceText.text = text;
@@ -78,9 +85,13 @@ public class InLineScript : MonoBehaviour {
 	}
 
 	void RemoveChildren () {
-		int childCount = canvas.transform.childCount;
-		for (int i = childCount - 1; i >= 0; --i) {
-			GameObject.Destroy (canvas.transform.GetChild (i).gameObject);
+		int canvasChild = dialogePlace.transform.childCount;
+		for (int i = canvasChild - 1; i >= 0; --i) {
+			GameObject.Destroy (dialogePlace.transform.GetChild (i).gameObject);
+		}
+		int buttonChild = buttonPlace.transform.childCount;
+		for (int i = buttonChild - 1; i >= 0; --i) {
+			GameObject.Destroy (buttonPlace.transform.GetChild (i).gameObject);
 		}
 	}
 }

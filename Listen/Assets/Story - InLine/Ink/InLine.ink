@@ -4,6 +4,7 @@
 A cheeseburger and fries?
 *   "Double cheeseburger[, actually."], actually. With sweet potato fries."
     Your total comes to $8.27. -> checkout.pay
+    
     = pay
     *   "Credit" -> checkout.declined
     *   "Debit" -> checkout.declined
