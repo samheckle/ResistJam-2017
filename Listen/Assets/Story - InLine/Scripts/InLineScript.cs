@@ -22,8 +22,8 @@ public class InLineScript : MonoBehaviour {
 	private Button buttonPrefab;
 
 	void Awake(){
-		buttonPlace = canvas.transform.GetChild(0).gameObject;
-		dialogePlace = canvas.transform.GetChild(1).gameObject;
+		buttonPlace = GameObject.Find("Buttons");
+		dialogePlace = GameObject.Find("Dialogue");
 		StartStory();
 	}
 
@@ -73,22 +73,21 @@ public class InLineScript : MonoBehaviour {
 		Button choice = Instantiate (buttonPrefab) as Button;
 		
 		choice.transform.SetParent (buttonPlace.transform, false);
-		//choice.transform.parent = buttonPlace.transform;
 
 		Text choiceText = choice.GetComponentInChildren<Text> ();
 		choiceText.text = text;
-
-		HorizontalLayoutGroup layoutGroup = choice.GetComponent <HorizontalLayoutGroup> ();
-		layoutGroup.childForceExpandHeight = false;
 
 		return choice;
 	}
 
 	void RemoveChildren () {
+		// remove children of dialogePlace
 		int canvasChild = dialogePlace.transform.childCount;
 		for (int i = canvasChild - 1; i >= 0; --i) {
 			GameObject.Destroy (dialogePlace.transform.GetChild (i).gameObject);
 		}
+
+		// remove children of buttonPlace
 		int buttonChild = buttonPlace.transform.childCount;
 		for (int i = buttonChild - 1; i >= 0; --i) {
 			GameObject.Destroy (buttonPlace.transform.GetChild (i).gameObject);
