@@ -14,6 +14,7 @@ public class InLineScript : MonoBehaviour {
 	private Canvas canvas; // canvas for text/images
 	private GameObject buttonPlace; // placement for button
 	private GameObject dialogePlace;
+	private GameObject storyPlace;
 
 	// UI Prefabs
 	[SerializeField]
@@ -24,6 +25,7 @@ public class InLineScript : MonoBehaviour {
 	void Awake(){
 		buttonPlace = GameObject.Find("Buttons");
 		dialogePlace = GameObject.Find("Dialogue");
+		storyPlace = GameObject.Find("Story");
 		StartStory();
 	}
 
@@ -66,7 +68,11 @@ public class InLineScript : MonoBehaviour {
 	void CreateContentView (string text) {
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
-		storyText.transform.SetParent (dialogePlace.transform, false);
+		if(storyText.text.StartsWith("\"")){
+			storyText.transform.SetParent (dialogePlace.transform, false);
+		} else{
+			storyText.transform.SetParent (storyPlace.transform, false);
+		}
 	}
 
 	Button CreateChoiceView (string text) {
@@ -85,6 +91,12 @@ public class InLineScript : MonoBehaviour {
 		int canvasChild = dialogePlace.transform.childCount;
 		for (int i = canvasChild - 1; i >= 0; --i) {
 			GameObject.Destroy (dialogePlace.transform.GetChild (i).gameObject);
+		}
+		
+		// remove children of storyPlace
+		int storyChild = storyPlace.transform.childCount;
+		for (int i = storyChild - 1; i >= 0; --i) {
+			GameObject.Destroy (storyPlace.transform.GetChild (i).gameObject);
 		}
 
 		// remove children of buttonPlace
