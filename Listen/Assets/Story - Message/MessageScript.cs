@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
+using UnityEngine.SceneManagement;
 
 public class MessageScript : MonoBehaviour {
 	// SerializeField: use private variable in the inspector
@@ -13,33 +14,35 @@ public class MessageScript : MonoBehaviour {
 	[SerializeField]
 	private Canvas canvas; // canvas for text/images
 	private GameObject buttonPlace; // placement for button
-	private GameObject youPlace;
-	private GameObject themPlace;
-
-	private GameObject newYou;
+	private GameObject yourPlace;
+	private GameObject theirPlace;
 
 	// UI Prefabs
 	[SerializeField]
-	private Text textPrefab;
+	private Text yourPrefab;
+	[SerializeField]
+	private Text theirPrefab;
 	[SerializeField]
 	private Button buttonPrefab;
 
+	private AssetBundle myLoadedAssetBundle;
+	private string[] scenePaths;
+
 	void Awake(){
 		buttonPlace = GameObject.Find("Buttons");
-		youPlace = GameObject.Find("You");
-		themPlace = GameObject.Find("Them");
+		yourPlace = GameObject.Find("You");
+		theirPlace = GameObject.Find("Them");
 		StartStory();
 	}
 
 	// Use this for initialization
 	void StartStory () {
 		story = new Story(inkStory.text);
-		
 		RefreshView();
 	}
 	
 	void RefreshView(){
-		MoveChildren();
+		RemoveChildren();
 
 		while(story.canContinue){
 			string text = story.Continue().Trim();
@@ -56,11 +59,13 @@ public class MessageScript : MonoBehaviour {
 			}
 		}
 		else {
-			RemoveChildren();
-			Button choice = CreateChoiceView("End of story.\nRestart?");
+			Button choice = CreateChoiceView("End of story");
 			choice.onClick.AddListener(delegate{
-				StartStory();
+				Remove();
+				// SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+				SceneManager.LoadScene ("5 - InLine", LoadSceneMode.Additive);
 			});
+			
 		}
 	}
 	void OnClickChoiceButton (Choice choice) {
@@ -69,23 +74,27 @@ public class MessageScript : MonoBehaviour {
 	}
 
 	void CreateContentView (string text) {
-		Text storyText = Instantiate (textPrefab) as Text;
-		storyText.text = text;
 		for(int i=0;i<story.currentTags.Count;i++){
 			if(story.currentTags[i] == "you"){
-				storyText.transform.SetParent (youPlace.transform, false);
+				Text storyText = Instantiate (yourPrefab) as Text;
+				Text hold = Instantiate (theirPrefab) as Text;
+				hold.transform.SetParent(theirPlace.transform,false);
+				storyText.text = text;
+				storyText.transform.SetParent (yourPlace.transform, false);
 			} else{
-				storyText.transform.SetParent (themPlace.transform, false);
+				Text storyText = Instantiate (theirPrefab) as Text;
+				Text hold = Instantiate (yourPrefab) as Text;
+				storyText.text = text;
+				storyText.transform.SetParent (theirPlace.transform, false);
+				hold.transform.SetParent(yourPlace.transform,false);
 			}
 		}
-			//Debug.Log(story.currentTags[i]);
+		
 	}
 
 	Button CreateChoiceView (string text) {
 		Button choice = Instantiate (buttonPrefab) as Button;
-		
 		choice.transform.SetParent (buttonPlace.transform, false);
-
 		Text choiceText = choice.GetComponentInChildren<Text> ();
 		choiceText.text = text;
 
@@ -94,26 +103,36 @@ public class MessageScript : MonoBehaviour {
 
 	void RemoveChildren () {
 		// remove children of youPlace
-		int canvasChild = youPlace.transform.childCount;
-		//Vector3 move = (0,1,0);
-		for (int i = canvasChild - 1; i >= 0; --i) {
-			GameObject.Destroy (youPlace.transform.GetChild (i).gameObject);
+		int canvasChild = yourPlace.transform.childCount;
+		for (int i = 0; i < canvasChild - 2; i++) {
+				GameObject.Destroy (yourPlace.transform.GetChild (i).gameObject);
 		}
 		
 		// remove children of storyPlace
-		int storyChild = themPlace.transform.childCount;
-		for (int i = storyChild - 1; i >= 0; --i) {
-			newYou = themPlace.transform.GetChild (i).gameObject;
-			newYou.transform.position += new Vector3(0,45,0);
-			if(newYou.transform.position.y < -15){
-				GameObject.Destroy (themPlace.transform.GetChild (i).gameObject);
-			}
+		int theirChild = theirPlace.transform.childCount;
+		for (int i = 0; i < canvasChild - 2; i++) {
+				GameObject.Destroy (theirPlace.transform.GetChild (i).gameObject);
 		}
 
 		// remove children of buttonPlace
+		RemoveButton();
+	}
+
+	void RemoveButton(){
 		int buttonChild = buttonPlace.transform.childCount;
 		for (int i = buttonChild - 1; i >= 0; --i) {
 			GameObject.Destroy (buttonPlace.transform.GetChild (i).gameObject);
+		}
+	}
+
+	void Remove(){
+		int canvasChild = yourPlace.transform.childCount;
+		for (int i = canvasChild - 1; i >= 0; --i) {
+			GameObject.Destroy (yourPlace.transform.GetChild (i).gameObject);
+		}
+		int storyChild = theirPlace.transform.childCount;
+		for (int i = storyChild - 1; i >= 0; --i) {
+			GameObject.Destroy (theirPlace.transform.GetChild (i).gameObject);
 		}
 	}
 }
