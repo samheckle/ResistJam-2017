@@ -27,17 +27,18 @@ So what? #them
 = noWay
 <> There's just no way. #you
 Yeah, but you can't know for sure that he won't. You don't know the president personally, and you have no idea what he's going to do. Did he call you up and get your approval for bin Laden? #them
-* Of course not[!], and I can know for sure that he isn't going to ban the damn pledge. -> justWish #you
+* Of course not[!], -> justWish
 * That's besides the point. -> fakeNews #you
 
 = fakeNews
-* The point is that you shared [fake news.] an article that is a lie. -> factCheck #you
-* The point is that you [believed that article.] blindly believed that article, and didn't think twice before sharing it. -> factCheck #you
+* The point is that you shared [fake news.] an article that is a lie -> factCheck
+* The point is that you [believed that article.] blindly believed that article, and didn't think twice before sharing it -> factCheck
 
 = factCheck
+<>. #you
 Well you can't expect me to fact check every article I read. #them
 * Yes I can. -> checkEveryArticle #you
-* [I expected more of you.] -> wow #you
+* I expected more of you. -> wow #you
 
 = wow
 Wow. #them
@@ -46,10 +47,11 @@ Wow. #them
 
 = youreAnAsshole
 You're being an asshole. #them
-* I'm sorry! -> justWish #you
+* I'm sorry! -> justWish
 * Cool. -> END #you
 
 = justWish
+<> and I can know for sure that he isn't going to ban the damn pledge. #you
 I lose respect every time you talk down to me. Do you think I'm going to just agree with you when all you do is act like I'm a worse human being than you? #them
 * You're right. -> youreSorry
 * I'm sorry, okay? -> youreSorry
@@ -77,10 +79,11 @@ Would you STOP telling me what I can and can't do?
 = samePage
 <> We're on the same page here. #you
 I doubt it. #them
-* No, really[.]. I don't want that either, but I'm willing to spend the time researching if it means I don't spread lies. -> whateverYouSay
+* No, really[.]. I don't want that either, but I'm willing to spend the time researching if it means I don't spread lies -> whateverYouSay
 * That's fine[.] Just believe me when I say that I get where you're coming from. -> whateverYouSay #you
 
 = whateverYouSay
+<>. #you
 Whatever you say. #them
 -> END
 
@@ -97,9 +100,12 @@ Seriously. Don't talk down to me. I'm not going to listen if you're just going t
 = youreSorry
 <> I don't want to argue. I just want to explain myself. #you
 Ok. #them
-* We all have a responsibility[.] to only talk about and share things that are both true and reasonable. It's like rumors. If you never say something that's false (or something that you're unsure about) you'll never spread a rumor. #you
-* We can't get caught up in being angry[.], even though it's the easy thing to do. It's easy to be angry, but it's important to ignore that anger and understand what's making you angry. #you
-- Ok. #them
+* We all have a responsibility[ about what we share.] to only talk about and share things that are both true and reasonable. It's like rumors. If you never say something that's false (or something that you're unsure about) you'll never spread a rumor -> thisIsDumb
+* We can't get caught up in being angry[.], even though it's the easy thing to do. It's easy to be angry, but it's important to ignore that anger and understand what's making you angry -> thisIsDumb
+
+= thisIsDumb //some weird hack to make the tags work
+<>. #you
+Ok. #them
 -> END
 
 = fuckYou
