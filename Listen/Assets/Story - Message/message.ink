@@ -99,7 +99,8 @@ Seriously. Don't talk down to me. I'm not going to listen if you're just going t
 Ok. #them
 * We all have a responsibility[.] to only talk about and share things that are both true and reasonable. It's like rumors. If you never say something that's false (or something that you're unsure about) you'll never spread a rumor. #you
 * We can't get caught up in being angry[.], even though it's the easy thing to do. It's easy to be angry, but it's important to ignore that anger and understand what's making you angry. #you
-- Ok. -> END #them
+- Ok. #them
+-> END
 
 = fuckYou
 Fuck you. -> END #them
