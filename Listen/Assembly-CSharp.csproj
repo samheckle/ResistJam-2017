@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Story - Border\BorderScript.cs" />
+     <Compile Include="Assets\Story - Dinner\DinnerScript.cs" />
      <Compile Include="Assets\Story - InLine\Scripts\InLineScript.cs" />
      <Compile Include="Assets\Story - Message\MessageScript.cs" />
      <None Include="Assets\Plugins\Ink\Resources\InkDefaultTemplate.txt" />
