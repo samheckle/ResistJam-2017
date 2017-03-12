@@ -17,6 +17,9 @@ public class DinnerScript : MonoBehaviour {
 	private GameObject yourPlace;
 	private GameObject momPlace;
 
+	private AssetBundle myLoadedAssetBundle;
+	private string[] scenePaths;
+
 	// UI Prefabs
 	[SerializeField]
 	private Text textPrefab;
@@ -27,6 +30,8 @@ public class DinnerScript : MonoBehaviour {
 		buttonPlace = GameObject.Find("Buttons");
 		yourPlace = GameObject.Find("You");
 		momPlace = GameObject.Find("Mom");
+		// myLoadedAssetBundle = AssetBundle.LoadFromFile("Scenes");
+		// scenePaths = myLoadedAssetBundle.GetAllScenePaths();
 		StartStory();
 	}
 
@@ -57,7 +62,7 @@ public class DinnerScript : MonoBehaviour {
 		else {
 			Button choice = CreateChoiceView("End of story.");
 			choice.onClick.AddListener(delegate{
-				SceneManager.LoadScene ("3 - Border", LoadSceneMode.Single);
+				SceneManager.LoadScene ("3- Border", LoadSceneMode.Single);
 			});
 		}
 	}

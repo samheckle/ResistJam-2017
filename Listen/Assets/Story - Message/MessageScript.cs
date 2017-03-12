@@ -17,6 +17,11 @@ public class MessageScript : MonoBehaviour {
 	private GameObject yourPlace;
 	private GameObject theirPlace;
 
+	[SerializeField]
+	private GameObject yourMessage;
+	[SerializeField]
+	private GameObject theirMessage;
+
 	// UI Prefabs
 	[SerializeField]
 	private Text yourPrefab;
@@ -77,12 +82,16 @@ public class MessageScript : MonoBehaviour {
 				Text hold = Instantiate (theirPrefab) as Text;
 				hold.transform.SetParent(theirPlace.transform,false);
 				storyText.text = text;
-				storyText.transform.SetParent (yourPlace.transform, false);
+				GameObject img = Instantiate(yourMessage);
+				img.transform.SetParent (yourPlace.transform, false);
+				storyText.transform.SetParent (img.transform, false);
 			} else{
 				Text storyText = Instantiate (theirPrefab) as Text;
 				Text hold = Instantiate (yourPrefab) as Text;
 				storyText.text = text;
-				storyText.transform.SetParent (theirPlace.transform, false);
+				GameObject img = Instantiate(theirMessage);
+				img.transform.SetParent (theirPlace.transform, false);
+				storyText.transform.SetParent (img.transform, false);
 				hold.transform.SetParent(yourPlace.transform,false);
 			}
 		}
