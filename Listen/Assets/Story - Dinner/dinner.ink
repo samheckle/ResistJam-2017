@@ -72,36 +72,15 @@
 
 = NothingICanDo
 "Well there's nothing I can do about it. He said what he said in 2005, and I can't change it." #mom
-* "I'm sick of hearing that. -> finish
-* "That's not an excuse. -> finish
+* "I'm sick of hearing that.["]  -> finish
+* "That's not an excuse.["]  -> finish
 
 = finish
-<>There is something you can do, and it's straightforward: don't be complacent. If a presidential candidate talks about sexually assaulting women, get fed up! Get angry! Don't act like it's okay! I refuse to be complacent. I am no longer accepting the things I cannot change, I am changing the things I cannot accept." #you
-* [Excuse yourself from the table.] #spokeUp
+<> There is something you can do, and it's straightforward: don't be complacent. #you
+* If a presidential candidate talks about sexually assaulting women, get fed up! #you
+** Get angry! #you
+*** Don't act like it's okay! #you
+**** I refuse to be complacent. #you
+***** I am no longer accepting the things I cannot change, I am changing the things I cannot accept." #you
+****** [Excuse yourself from the table.] #spokeUp
 -> END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
