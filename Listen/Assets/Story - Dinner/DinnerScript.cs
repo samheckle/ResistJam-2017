@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
+using UnityEngine.SceneManagement;
 
 public class DinnerScript : MonoBehaviour {
 	// SerializeField: use private variable in the inspector
@@ -56,7 +57,7 @@ public class DinnerScript : MonoBehaviour {
 		else {
 			Button choice = CreateChoiceView("End of story.");
 			choice.onClick.AddListener(delegate{
-				StartStory();
+				SceneManager.LoadScene ("3 - Border", LoadSceneMode.Single);
 			});
 		}
 	}

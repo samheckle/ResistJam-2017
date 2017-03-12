@@ -69,10 +69,13 @@ public class BorderScript : MonoBehaviour {
 	void CreateContentView (string text) {
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
-		if(storyText.text.StartsWith("\"")){
+		for(int i=0;i<story.currentTags.Count;i++){
+			if(story.currentTags[i] == "you"){
+				storyText.transform.SetParent (storyPlace.transform, false);
+			}
+			else{
 			storyText.transform.SetParent (dialogePlace.transform, false);
-		} else{
-			storyText.transform.SetParent (storyPlace.transform, false);
+			}
 		}
 	}
 

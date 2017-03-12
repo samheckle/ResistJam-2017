@@ -1,0 +1,1 @@
+﻿{"inkVersion":16,"root":[["ev","str","^Pay for their meal.","/str","/ev",{"*":"0.c","flg":20},{"c":[{"->":"pay"},{"#f":7}]}],["ev","str","^Don't pay for their meal.","/str","/ev",{"*":"1.c","flg":20},{"c":["end",{"#f":7}]}],"done",{"pay":["^\"I can pay for that\" ",{"#":"you"},"\n",{"#f":3}],"#f":3}],"listDefs":{}}
